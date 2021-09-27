@@ -1,0 +1,62 @@
+---
+title: "Tugas Modul 4"
+author: "Salsabila Lattifa Fikri"
+date: "2/19/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dslabs)
+data(murders)
+```
+
+```{r}
+#5
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro", "San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+ranks <- rank(temp)
+
+temp2 <- c(35, 88, 42, 84, 81, 30)
+city2 <- c("Alabama", "Alorina", "Iowa", "Michigan", "New York", "Tennessee")
+my_df <- data.frame(name = city2, rank = ranks)
+my_df
+```
+
+```{r}
+#6
+a <- murders$population
+ind <- order(a)
+my_df <- data.frame(name = ind, temperature = murders$state[ind])
+(my_df)
+```
+
+```{r}
+#7
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+plot(population_in_millions, total_gun_murders)
+```
+```{r}
+pop_m <- murders$population / log10 (10^6)
+total_m <- murders$total
+plot(pop_m,total_m)
+```
+
+```{r}
+#8
+x <- with(murders, total/population*100000)
+hist(x)
+```
+
+```{r}
+#9
+murders$rate <- with(murders, total/population*10^5)
+boxplot(rate~region,data = murders)
+```
